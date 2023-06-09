@@ -10,32 +10,38 @@ import { ROLES } from './constants/roles';
 import AdminPage from './pages/AdminPage';
 import RecordPage from './pages/RecordPage';
 import CategoryPage from './pages/CategoryPage';
-
+import { Provider } from 'react-redux';
+import LoginStore from './state/login/store';
 class App extends Component {
 	render(){
+		// const tokenStr = localStorage.getItem('token') || '';
+		// const token = tokenStr.length > 0;
 		return(
-			<Routes>
-				<Route path='/' element={<Layout isLoggedIn={false}/>}>
-					{/* public routes */}
-					<Route path='login' element={<LoginPage/>}/>
-					<Route path='register' element={<RegisterPage/>}/>
+			<Provider store={LoginStore}>
+				<Routes>
+					<Route path='/' element={<Layout />}>
+						{/* public routes */}
+						<Route path='login' element={<LoginPage/>}/>
+						<Route path='register' element={<RegisterPage/>}/>
 
-					{/* protected routes for normal users */}
-					<Route element={<RequireAuth allowedRoles={[ROLES.USER]}/>}>
-						<Route path='home' element={<HomePage/>}/>
-						<Route path='records' element={<RecordPage/>}/>
-						<Route path='categories' element={<CategoryPage/>}/>
+						{/* protected routes for normal users */}
+						<Route element={<RequireAuth allowedRoles={[ROLES.USER]}/>}>
+							<Route path='home' element={<HomePage/>}/>
+							<Route path='records' element={<RecordPage/>}/>
+							<Route path='categories' element={<CategoryPage/>}/>
+						</Route>
+
+						{/* protected routes for ADMIN */}
+						<Route element={<RequireAuth allowedRoles={[ROLES.ADMIN]}/>}>
+							<Route path='admin-dashboard' element={<AdminPage/>}/>
+						</Route>
+
+						{/* catch all */}
+						<Route path='*' element={<MissingPage/>}/>
 					</Route>
+				</Routes>
+			</Provider>
 
-					{/* protected routes for ADMIN */}
-					<Route element={<RequireAuth allowedRoles={[ROLES.ADMIN]}/>}>
-						<Route path='admin-dashboard' element={<AdminPage/>}/>
-					</Route>
-
-					{/* catch all */}
-					<Route path='*' element={<MissingPage/>}/>
-				</Route>
-			</Routes>
 		);
 	}
 }

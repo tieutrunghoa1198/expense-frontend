@@ -9,7 +9,7 @@ export class ApiService {
 
     constructor() {
     	_axios.interceptors.request.use((config) => {
-    		const token = JSON.parse(localStorage.getItem('user')).token;
+    		const token = localStorage.getItem('token');
     		if (token) {
     			config.headers.Authorization = token ? `Bearer ${token}` : undefined
     		}

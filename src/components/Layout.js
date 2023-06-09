@@ -1,10 +1,11 @@
 import { Outlet } from 'react-router-dom'
-import Header from './Header'
 import Footer from './Footer'
 import React from 'react'
+import Header from './Header';
+
 
 const Layout = ({isLoggedIn}) => {
-	// const asd = API_SERVICE.Records.getAll()
+	console.log(isLoggedIn)
 	return (
 		<main className="App">
 			<Header />
