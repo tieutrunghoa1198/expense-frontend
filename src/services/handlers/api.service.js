@@ -1,12 +1,11 @@
-import axios from 'axios'
 import RecordService from './record.service';
 import CategoryService from './category.service';
-const baseURL = 'http://localhost:8090/api/'
-export const _axios = axios.create({ baseURL })
+import { _axios } from '../../constants/api.const';
+import { API_ROUTES } from '../../constants/api-urls';
 
-class ApiService {
-    Records = new RecordService();
-    Categories = new CategoryService();
+export class ApiService {
+    Records = new RecordService(API_ROUTES.RECORDS);
+    Categories = new CategoryService(API_ROUTES.CATEGORIES);
 
     constructor() {
     	_axios.interceptors.request.use((config) => {
@@ -19,6 +18,6 @@ class ApiService {
     }
 }
 
-export const API_SERVICE = new ApiService();
+
 
 
