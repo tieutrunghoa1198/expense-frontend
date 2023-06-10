@@ -1,28 +1,30 @@
 import React, { Component}  from 'react';
 import { Route, Routes } from 'react-router-dom';
-import HomePage from './pages/HomePage';
+import HomePage from './pages/ExpenseManagement/HomePage';
 import Layout from './components/Layout';
-import LoginPage from './pages/LoginPage';
+import LoginPage from './pages/Auth/LoginPage';
 import MissingPage from './pages/MissingPage';
-import RegisterPage from './pages/RegisterPage';
-import RequireAuth from './components/RequireAuth';
+import RegisterPage from './pages/Auth/RegisterPage';
+import RequireAuth from './components/Auth/RequireAuth';
 import { ROLES } from './constants/roles';
-import AdminPage from './pages/AdminPage';
-import RecordPage from './pages/RecordPage';
-import CategoryPage from './pages/CategoryPage';
+import AdminPage from './pages/UserManagement/AdminPage';
+import RecordPage from './pages/ExpenseManagement/RecordPage';
+import CategoryPage from './pages/ExpenseManagement/CategoryPage';
 import { Provider } from 'react-redux';
 import LoginStore from './state/login/store';
+import NonAuth from './components/Auth/NonAuth';
 class App extends Component {
 	render(){
-		// const tokenStr = localStorage.getItem('token') || '';
-		// const token = tokenStr.length > 0;
 		return(
 			<Provider store={LoginStore}>
 				<Routes>
 					<Route path='/' element={<Layout />}>
 						{/* public routes */}
-						<Route path='login' element={<LoginPage/>}/>
-						<Route path='register' element={<RegisterPage/>}/>
+						<Route element={<NonAuth />}>
+							<Route path='login' element={<LoginPage/>}/>
+							<Route path='register' element={<RegisterPage/>}/>
+						</Route>
+
 
 						{/* protected routes for normal users */}
 						<Route element={<RequireAuth allowedRoles={[ROLES.USER]}/>}>
@@ -41,7 +43,6 @@ class App extends Component {
 					</Route>
 				</Routes>
 			</Provider>
-
 		);
 	}
 }

@@ -3,9 +3,7 @@ import Footer from './Footer'
 import React from 'react'
 import Header from './Header';
 
-
-const Layout = ({isLoggedIn}) => {
-	console.log(isLoggedIn)
+const Layout = () => {
 	return (
 		<main className="App">
 			<Header />

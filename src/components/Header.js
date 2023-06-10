@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {getLoginStatus} from '../state/login/selectors';
 const Header = ({isLoggedIn}) => {
-	console.log(isLoggedIn)
+	// console.log(isLoggedIn)
 	const tokenStr = localStorage.getItem('token');
 	const handleLogout = () => {
 		localStorage.clear();
@@ -16,7 +16,7 @@ const Header = ({isLoggedIn}) => {
 			<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span className="navbar-toggler-icon"></span>
 			</button>
-			{isLoggedIn
+			{isLoggedIn || tokenStr
 				? (<div className="collapse navbar-collapse" id="navbarNav">
 					<ul className="navbar-nav">
 
