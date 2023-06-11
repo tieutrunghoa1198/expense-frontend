@@ -32,7 +32,6 @@ const LoginForm = ({ LoginAction }) => {
 
 	return (
 		<div>
-			<h2>Login Page</h2>
 			<form onSubmit={handleLogin}>
 				<div>
 					<label>Email:</label>

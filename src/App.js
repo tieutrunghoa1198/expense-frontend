@@ -27,7 +27,7 @@ class App extends Component {
 
 
 						{/* protected routes for normal users */}
-						<Route element={<RequireAuth allowedRoles={[ROLES.USER]}/>}>
+						<Route element={<RequireAuth allowedRoles={[ROLES.USER, ROLES.ADMIN]}/>}>
 							<Route path='home' element={<HomePage/>}/>
 							<Route path='records' element={<RecordPage/>}/>
 							<Route path='categories' element={<CategoryPage/>}/>
