@@ -6,11 +6,10 @@ export default class Authentication {
 		return res.data;
 	}
 
-	async logout() {
-
-	}
-
-	async register(registerObj) {
-
+	async register(username, fullname, email, password) {
+		const res = await _axios.post('auth/register', {
+			username, fullname, email, password
+		});
+		return res.data;
 	}
 }

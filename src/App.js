@@ -13,6 +13,7 @@ import CategoryPage from './pages/ExpenseManagement/CategoryPage';
 import { Provider } from 'react-redux';
 import LoginStore from './state/login/store';
 import NonAuth from './components/Auth/NonAuth';
+import UserProfilePage from "./pages/UserManagement/UserProfilePage";
 class App extends Component {
 	render(){
 		return(
@@ -27,10 +28,11 @@ class App extends Component {
 
 
 						{/* protected routes for normal users */}
-						<Route element={<RequireAuth allowedRoles={[ROLES.USER, ROLES.ADMIN]}/>}>
+						<Route element={<RequireAuth allowedRoles={[ROLES.USER]}/>}>
 							<Route path='home' element={<HomePage/>}/>
 							<Route path='records' element={<RecordPage/>}/>
 							<Route path='categories' element={<CategoryPage/>}/>
+							<Route path='profile' element={<UserProfilePage/>}/>
 						</Route>
 
 						{/* protected routes for ADMIN */}

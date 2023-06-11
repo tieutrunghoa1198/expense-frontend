@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Authentication from "../services/handlers/auth.service";
-import {useNavigate} from "react-router-dom";
+import Authentication from '../services/handlers/auth.service';
 
 const RegisterForm = () => {
 	const [username, setUsername] = useState('');
@@ -8,7 +7,6 @@ const RegisterForm = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState('');
-	const navigate = useNavigate();
 	const handleRegister = async (e) => {
 		e.preventDefault();
 		setError('');
@@ -16,18 +14,17 @@ const RegisterForm = () => {
 		// Perform registration logic here, such as making an API request
 		try {
 			const api = new Authentication();
-			const res = await api.register({email, password, fullname, username});
+			await api.register(username, fullname, email, password);
+			setError('Create account successfully!')
 
-			navigate('/login');
+			// Reset the form
+			setUsername('');
+			setFullname('');
+			setEmail('');
+			setPassword('');
 		} catch (error) {
-			setError('Invalid email or password.');
+			setError(error.response.data.message);
 		}
-
-		// Reset the form
-		setUsername('');
-		setFullname('');
-		setEmail('');
-		setPassword('');
 	};
 
 	return (
