@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {API_SERVICE} from '../../constants/api.const';
-import {Link} from 'react-router-dom';
+import {Link,useParams } from 'react-router-dom';
 const AdminPage = () => {
 	const [users, setUsers] = useState(null);
+
+	const { id } = useParams();
 
 	useEffect(() => {
 		getAllUser()
@@ -11,6 +13,10 @@ const AdminPage = () => {
 	const getAllUser = async () => {
 		const res = await API_SERVICE.User.getUsers()
 		setUsers(res.content);
+	}
+
+	const deleteUser = async () => {
+		await API_SERVICE.User.deleteUser(id)		
 	}
 
 	return (
@@ -45,7 +51,7 @@ const AdminPage = () => {
 													Details
 												</Link>
 											</button>
-											<button className="btn btn-outline-danger mx-1">Delete</button>
+											<button className="btn btn-outline-danger mx-1"  onClick={() => deleteUser(user.id)}>Delete</button>
 										</td>
 									</tr>
 								)
