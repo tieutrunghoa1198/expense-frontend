@@ -16,6 +16,7 @@ import NonAuth from './components/Auth/NonAuth';
 import UserProfilePage from './pages/UserManagement/UserProfilePage';
 import CreateRecordPage from "./pages/ExpenseManagement/CreateRecordPage";
 import DetailRecordPage from "./pages/ExpenseManagement/DetailRecordPage";
+import AddNewUser from './pages/UserManagement/AddUser';
 class App extends Component {
 	render(){
 		return(
@@ -41,7 +42,8 @@ class App extends Component {
 
 						{/* protected routes for ADMIN */}
 						<Route element={<RequireAuth allowedRoles={[ROLES.ADMIN]}/>}>
-							<Route path='admin-dashboard' element={<AdminPage/>}/>
+							<Route path='users' element={<AdminPage/>}/>
+							<Route path='create-user' element={<AddNewUser/>}/>
 						</Route>
 
 						{/* catch all */}
