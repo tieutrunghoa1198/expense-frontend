@@ -48,7 +48,7 @@ export default class BaseApi {
       *
       * @return {any} updated obj
       */
-     async update(obj, id) {
+     async update(id, obj) {
      	const res = await _axios.put(`${this.route}/${id}`, {...obj});
      	return res.data;
      }

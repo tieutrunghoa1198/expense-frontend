@@ -16,14 +16,23 @@ const RecordPage = () => {
 		setExpRecords(res.content);
 	}
 
+	const handleDelete = async (id) => {
+		try {
+			await API_SERVICE.Records.delete(id)
+			await getAllExpense()
+		} catch (e) {
+			console.log(e.message)
+		}
+	}
+
 	return (
 		<div className="container">
 			<h1>Expense Records</h1>
-			<button className="btn btn-primary">
+			<button className="btn btn-primary mb-3">
 				<Link to="/create-record" style={{ color: 'white', textDecoration: 'none'}}>Create Expense</Link>
 			</button>
 			{
-				expRecords
+				expRecords && expRecords.length > 0
 					? (<table className="table">
 						<thead>
 							<tr>
@@ -46,12 +55,21 @@ const RecordPage = () => {
 										<td>{record.amount}</td>
 										<td className={rowClassName}>{record.type}</td>
 										<td>
-											<button className="btn btn-outline-primary mx-1">
-												<Link to={`/records/${record.id}`} style={{ textDecoration: 'none'}}>
-													Details
-												</Link>
+											<Link to={`/records/${record.id}`} style={{ textDecoration: 'none'}}>
+												<button className="btn btn-outline-primary mx-1">
+													Detail
+												</button>
+											</Link>
+
+											<Link to={`/records/edit/${record.id}`} style={{ textDecoration: 'none'}}>
+												<button className="btn btn-outline-primary mx-1">
+													Edit
+												</button>
+											</Link>
+
+											<button className="btn btn-outline-danger mx-1" onClick={() => handleDelete(record.id)}>
+												Delete
 											</button>
-											<button className="btn btn-outline-danger mx-1">Delete</button>
 										</td>
 									</tr>
 								)

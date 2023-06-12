@@ -16,6 +16,7 @@ import NonAuth from './components/Auth/NonAuth';
 import UserProfilePage from './pages/UserManagement/UserProfilePage';
 import CreateRecordPage from "./pages/ExpenseManagement/CreateRecordPage";
 import DetailRecordPage from "./pages/ExpenseManagement/DetailRecordPage";
+import UpdateRecordPage from "./pages/ExpenseManagement/UpdateRecordPage";
 class App extends Component {
 	render(){
 		return(
@@ -33,6 +34,7 @@ class App extends Component {
 						<Route element={<RequireAuth allowedRoles={[ROLES.USER]}/>}>
 							<Route path='home' element={<HomePage/>}/>
 							<Route path='records' element={<RecordPage/>}/>
+							<Route path='records/edit/:id' element={<UpdateRecordPage/>}/>
 							<Route path='records/:id' element={<DetailRecordPage/>}/>
 							<Route path='categories' element={<CategoryPage/>}/>
 							<Route path='create-record' element={<CreateRecordPage/>}/>
