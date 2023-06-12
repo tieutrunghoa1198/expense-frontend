@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {API_SERVICE} from '../../constants/api.const';
-import {Link} from 'react-router-dom';
+import {Link,useParams } from 'react-router-dom';
 const AdminPage = () => {
 	const [users, setUsers] = useState(null);
+
+	const { id } = useParams();
 
 	useEffect(() => {
 		getAllUser()
