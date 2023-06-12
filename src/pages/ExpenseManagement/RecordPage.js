@@ -29,7 +29,7 @@ const RecordPage = () => {
 		<div className="container">
 			<h1>Expense Records</h1>
 			<button className="btn btn-primary mb-3">
-				<Link to="/create-record" style={{ color: 'white', textDecoration: 'none'}}>Create Expense</Link>
+				<Link to="/records/create" style={{ color: 'white', textDecoration: 'none'}}>Create Expense</Link>
 			</button>
 			{
 				expRecords && expRecords.length > 0
