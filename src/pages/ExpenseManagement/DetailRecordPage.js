@@ -9,7 +9,6 @@ const DetailRecordPage = () => {
 		try {
 			const recordId = Number.parseInt(id)
 			const res = await API_SERVICE.Records.getOne(recordId)
-			console.log(res)
 			setData(res)
 		} catch (e) {
 			console.log(e)

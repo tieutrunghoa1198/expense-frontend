@@ -15,7 +15,6 @@ const ExpenseRecord = ({onSubmitClick, action, initialObj}) => {
 	const { name, note, type, amount, date, categories } = formData;
 
 	useEffect(() => {
-		console.log(initialObj)
 		getAllCategories()
 	}, [])
 

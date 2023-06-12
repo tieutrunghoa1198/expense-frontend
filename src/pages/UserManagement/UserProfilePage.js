@@ -12,7 +12,6 @@ const UserProfilePage = () => {
 		try {
 			const res = await API_SERVICE.User.getMe()
 			setProfile(res);
-			console.log(res)
 		} catch (e) {
 			console.log(e)
 		}

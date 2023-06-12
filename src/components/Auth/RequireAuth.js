@@ -11,7 +11,6 @@ const RequireAuth = ({ allowedRoles }) => {
 
 	if (store.isLoggedIn) return <Outlet />
 
-	// console.log(store.isLoggedIn);
 	return roles && roles.find((role) => (allowedRoles && allowedRoles.includes(role)))
 		? <Outlet />
 		: (auth && auth.user) 

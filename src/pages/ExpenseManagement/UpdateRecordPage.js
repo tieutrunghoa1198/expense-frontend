@@ -25,11 +25,9 @@ const UpdateRecordPage = () => {
 	}
 
 	const handleSubmit = async (input) => {
-		console.log(input)
 		input.categories = [input.categories]
 		try {
-			const res = await API_SERVICE.Records.update(convertedId, input);
-			console.log(res);
+			await API_SERVICE.Records.update(convertedId, input);
 			navigate('/records');
 		} catch (e) {
 			console.log(e)
