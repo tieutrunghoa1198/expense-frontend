@@ -13,6 +13,10 @@ const AdminPage = () => {
 		setUsers(res.content);
 	}
 
+	const deleteUser = async () => {
+		await API_SERVICE.User.deleteUser(id)		
+	}
+
 	return (
 		<div className="container">
 			<h1>User Manager</h1>
@@ -45,7 +49,7 @@ const AdminPage = () => {
 													Details
 												</Link>
 											</button>
-											<button className="btn btn-outline-danger mx-1">Delete</button>
+											<button className="btn btn-outline-danger mx-1"  onClick={() => deleteUser(user.id)}>Delete</button>
 										</td>
 									</tr>
 								)
