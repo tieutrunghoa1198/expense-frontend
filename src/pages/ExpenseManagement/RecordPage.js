@@ -46,7 +46,11 @@ const RecordPage = () => {
 										<td>{record.amount}</td>
 										<td className={rowClassName}>{record.type}</td>
 										<td>
-											<button className="btn btn-outline-primary mx-1">Details</button>
+											<button className="btn btn-outline-primary mx-1">
+												<Link to={`/records/${record.id}`} style={{ textDecoration: 'none'}}>
+													Details
+												</Link>
+											</button>
 											<button className="btn btn-outline-danger mx-1">Delete</button>
 										</td>
 									</tr>

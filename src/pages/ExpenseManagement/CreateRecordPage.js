@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {API_SERVICE} from '../../constants/api.const';
 import {ExpenseType} from '../../constants/expense-type';
 
@@ -11,23 +11,20 @@ const CreateRecordPage = () => {
 		date: '',
 		categories: ''
 	});
-	// "name": "đi chơi",
-	// 	"note": "asda",
-	// 	"type": "EXPENSE",
-	// 	"amount": 10000,
-	// 	"date": "2023-12-30",
-	// 	"categories": [1]
-
+	const [userCategories, setUserCategories] = useState(null);
+	const [error, setError] = useState('');
 	const { name, note, type, amount, date, categories } = formData;
 	const handleCreateRecord = async (e) => {
 		e.preventDefault()
+		setError('')
 		formData.categories = [formData.categories]
 		try {
 			const res = await API_SERVICE.Records.create(formData)
+			setError('Create successfully!')
 			console.log(res)
-			console.log(formData)
 		} catch (e) {
-			console.log(e)
+			setError(e.message)
+			console.log(e.message)
 		}
 	}
 
@@ -37,6 +34,20 @@ const CreateRecordPage = () => {
 			[e.target.name]: e.target.value
 		});
 	};
+
+	const getAllCategories = async () => {
+		try {
+			const res = await API_SERVICE.Categories.getAll()
+			setUserCategories(res.content)
+			console.log(res.content)
+		} catch (e) {
+			console.log(e)
+		}
+	}
+
+	useEffect(() => {
+		getAllCategories()
+	}, [])
 
 	return (
 		<div className="container">
@@ -89,9 +100,13 @@ const CreateRecordPage = () => {
 						className="form-select"
 						aria-label="Default select example">
 						<option value="">Open this select menu</option>
-						<option value="1">One</option>
-						<option value="2">Two</option>
-						<option value="3">Three</option>
+						{
+							userCategories
+								? (userCategories.map((category, index) => {
+									return (<option key={index} value={category.id}>{category.name}</option>)
+								}))
+								: (<></>)
+						}
 					</select>
 				</div>
 
@@ -119,6 +134,7 @@ const CreateRecordPage = () => {
 				</div>
 				<button type="submit" className="btn btn-primary">Create</button>
 			</form>
+			{error && <div>{error}</div>}
 		</div>
 	);
 };
