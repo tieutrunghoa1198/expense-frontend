@@ -9,4 +9,8 @@ export default class UserService {
     	const res = await _axios.get(`${this.route}/me`);
     	return res.data
     }
+    async getUsers() {
+    	const res = await _axios.get(`${this.route}`);
+    	return res.data
+    }
 }
