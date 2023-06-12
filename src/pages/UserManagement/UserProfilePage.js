@@ -20,14 +20,15 @@ const UserProfilePage = () => {
 
 	return (
 		<div className="container">
+			<h1>User Profile</h1>
 			{
 				profile
 					? (<div>
-						Username: {profile.username}
+						<span className="fw-bold">Username</span>: {profile.username}
 						<br/>
-						Fullname: {profile.fullname}
+						<span className="fw-bold">Fullname</span>: {profile.fullname}
 						<br/>
-						Email: {profile.email}
+						<span className="fw-bold">Email</span>: {profile.email}
 						<br/>
 					  </div>)
 					: (<div>
