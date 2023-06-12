@@ -13,7 +13,8 @@ import CategoryPage from './pages/ExpenseManagement/CategoryPage';
 import { Provider } from 'react-redux';
 import LoginStore from './state/login/store';
 import NonAuth from './components/Auth/NonAuth';
-import UserProfilePage from "./pages/UserManagement/UserProfilePage";
+import UserProfilePage from './pages/UserManagement/UserProfilePage';
+import CreateRecordPage from "./pages/ExpenseManagement/CreateRecordPage";
 class App extends Component {
 	render(){
 		return(
@@ -32,6 +33,7 @@ class App extends Component {
 							<Route path='home' element={<HomePage/>}/>
 							<Route path='records' element={<RecordPage/>}/>
 							<Route path='categories' element={<CategoryPage/>}/>
+							<Route path='create-record' element={<CreateRecordPage/>}/>
 							<Route path='profile' element={<UserProfilePage/>}/>
 						</Route>
 

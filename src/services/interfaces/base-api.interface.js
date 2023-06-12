@@ -14,7 +14,7 @@ export default class BaseApi {
      * 
      * @return {list}
      */
-     async getAll(page = 1, size = 20) {
+     async getAll(page = 0, size = 20) {
      	const res = await _axios.get(`${this.route}?page=${page}&size=${size}`);
      	return res.data
      }
