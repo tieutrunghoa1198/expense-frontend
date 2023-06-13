@@ -13,9 +13,10 @@ const RecordPage = () => {
 	const [filteredRecords, setFilteredRecords] = useState(null);
 	const [isDescendingAmount, setIsDescendingAmount] = useState(false);
 	const [isDescendingDate, setIsDescendingDate] = useState(false);
-	const [selectedMonth, setSelectedMonth] = useState('')
-	const [selectedYear, setSelectedYear] = useState('')
-	const [selectedCategory, setSelectedCategory] = useState(0)
+	const [selectedMonth, setSelectedMonth] = useState('');
+	const [selectedYear, setSelectedYear] = useState('');
+	const [selectedCategory, setSelectedCategory] = useState(0);
+	const [selectedRows, setSelectedRows] = useState([]);
 	useEffect(() => {
 		getAllExpense()
 	}, [])
@@ -27,7 +28,7 @@ const RecordPage = () => {
 	const getAllExpense = async () => {
 		const res = await API_SERVICE.Records.getAll()
 		setExpRecords(res.content);
-		setFilteredRecords(res.content)
+		setFilteredRecords(res.content);
 	}
 
 	const handleDelete = async (id) => {
@@ -111,6 +112,37 @@ const RecordPage = () => {
 		setFilteredRecords(filtered);
 	}
 
+	const handleCheckboxChange = (event, rowId) => {
+		if (event.target.checked) {
+			setSelectedRows([...selectedRows, rowId]);
+		} else {
+			setSelectedRows(selectedRows.filter(id => id !== rowId));
+		}
+	};
+
+	const handleSelectAll = event => {
+		if (event.target.checked) {
+			// Select all checkboxes
+			const allRowIds = [];
+			expRecords.forEach(record => {
+				allRowIds.push(record.id)
+			})
+			setSelectedRows(allRowIds);
+		} else {
+			// Deselect all checkboxes
+			setSelectedRows([]);
+		}
+	};
+
+	const handleDeleteMultiple = (rows) => {
+		rows.forEach(id => {
+			handleDelete(id)
+		})
+		setSelectedRows([])
+	}
+
+
+
 	return (
 		<div className="container">
 			<h1>Expense Records</h1>
@@ -135,7 +167,13 @@ const RecordPage = () => {
 							<thead>
 								<tr>
 									<th scope="col">
-										<input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+										<input className="form-check-input"
+											   type="checkbox"
+											   value=""
+											   id="flexCheckDefault"
+											   onChange={handleSelectAll}
+											   checked={selectedRows.length === filteredRecords.length}
+										/>
 									</th>
 									<th scope="col">#</th>
 									<th scope="col">Name</th>
@@ -156,7 +194,11 @@ const RecordPage = () => {
 									return (
 										<tr key={index}>
 											<td>
-												<input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+												<input className="form-check-input"
+													   type="checkbox"
+													   id="flexCheckDefault"
+													   onChange={event => handleCheckboxChange(event, record.id)}
+													   checked={selectedRows.includes(record.id)}/>
 											</td>
 											<th scope="row">{index + 1}</th>
 											<td>{record.name}</td>
@@ -177,7 +219,8 @@ const RecordPage = () => {
 													</button>
 												</Link>
 
-												<button className="btn btn-outline-danger mx-1" onClick={() => handleDelete(record.id)}>
+												<button className="btn btn-outline-danger mx-1" 
+													onClick={() => handleDelete(record.id)}>
 												Delete
 												</button>
 											</td>
@@ -189,6 +232,17 @@ const RecordPage = () => {
 						<div className="mb-3">
 							<span className="fw-bold">Total: </span> {totalAmount()}
 						</div>
+						{
+							selectedRows.length > 0
+								? (<div className="mb-3">
+									Do you want to delete {selectedRows.length === expRecords.length ? 'all' : selectedRows.length} {selectedRows.length > 1 ? 'items' : 'item'}?
+									<button className="mx-2 btn btn-outline-danger" 
+										onClick={() => handleDeleteMultiple(selectedRows)}>
+										Delete
+									</button>
+								</div>)
+								: (<></>)
+						}
 						<UploadCSV onUpload={handleUpload}/>
 					</div>)
 					: (<p> There is no data for displaying! </p>)
