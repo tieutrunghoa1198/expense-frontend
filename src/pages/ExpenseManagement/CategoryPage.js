@@ -24,9 +24,9 @@ const CategoryPage = () => {
 	}
 	return (
 		<div className="container">
-            <h1>Categories</h1>
+			<h1>Categories</h1>
 			<button className="btn btn-primary mb-3 col-2">
-				<Link to="/categories/create" style={{ color: 'white', textDecoration: 'none'}}>Create Categorie</Link>
+				<Link to="/create-category" style={{ color: 'white', textDecoration: 'none'}}>Create Categorie</Link>
 			</button>
 			{
 				categorys && categorys.length > 0
@@ -51,7 +51,7 @@ const CategoryPage = () => {
 											<td>{category.description}</td>
 											<td>
 												
-												<Link to={`/categories/edit/${category.id}`} style={{ textDecoration: 'none'}}>
+												<Link to={`/update-category/${category.id}`} style={{ textDecoration: 'none'}}>
 													<button className="btn btn-outline-primary mx-1">
 													Edit
 													</button>

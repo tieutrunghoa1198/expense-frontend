@@ -4,7 +4,7 @@ import {useParams} from 'react-router-dom';
 
 const UpdateCategory = () => {
 	const { id } = useParams()
-    const [formData, setFormData] = useState({
+	const [formData, setFormData] = useState({
 		name: '',
 		description: '',
 	});
@@ -16,7 +16,7 @@ const UpdateCategory = () => {
 		setError('')
 		formData.categories = [formData.categories]
 		try {
-            const categoryId = Number.parseInt(id)
+			const categoryId = Number.parseInt(id)
 			const res = await API_SERVICE.Categories.update(formData,categoryId)
 			setError('Create successfully!')
 			console.log(res)
@@ -36,7 +36,7 @@ const UpdateCategory = () => {
 
 
 	return (       
-            <div className="container">
+		<div className="container">
 			<h1>Update Category</h1>
 			<form className="col-5" onSubmit={handleUpdateCategory}>
 				<div className="form-group mb-3">

@@ -27,38 +27,38 @@ const AdminPage = () => {
 			</button>
 			
 				
-				<table className="table">
-						<thead>
-							<tr>
-								<th scope="col">#</th>
-								<th scope="col">Username</th>
-								<th scope="col">Fullname</th>
-								<th scope="col">Email</th>
-								<th scope="col">Action</th>
-							</tr>
-						</thead>
-						{users? (<tbody>
-							{users.map((user, index) => {						
-								return (
-									<tr key={index}>
-										<th user="row">{index + 1}</th>
-										<td>{user.username}</td>							
-										<td>{user.fullname}</td>	
-										<td>{user.email}</td>				
-										<td>
-											<button className="btn btn-outline-primary mx-1">
-												<Link to={`/users/${user.id}`} style={{ textDecoration: 'none'}}>
+			<table className="table">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Username</th>
+						<th scope="col">Fullname</th>
+						<th scope="col">Email</th>
+						<th scope="col">Action</th>
+					</tr>
+				</thead>
+				{users? (<tbody>
+					{users.map((user, index) => {						
+						return (
+							<tr key={index}>
+								<th user="row">{index + 1}</th>
+								<td>{user.username}</td>							
+								<td>{user.fullname}</td>	
+								<td>{user.email}</td>				
+								<td>
+									<button className="btn btn-outline-primary mx-1">
+										<Link to={`/users/${user.id}`} style={{ textDecoration: 'none'}}>
 													Details
-												</Link>
-											</button>
-											<button className="btn btn-outline-danger mx-1"  onClick={() => deleteUser(user.id)}>Delete</button>
-										</td>
-									</tr>
-								)
-							})
-						}
-						</tbody>): (<p> There is no data for displaying! </p>)	}
-					</table>
+										</Link>
+									</button>
+									<button className="btn btn-outline-danger mx-1"  onClick={() => deleteUser(user.id)}>Delete</button>
+								</td>
+							</tr>
+						)
+					})
+					}
+				</tbody>): (<p> There is no data for displaying! </p>)	}
+			</table>
 					
 		
 		</div>

@@ -13,7 +13,7 @@ export default class UserService {
     	const res = await _axios.get(`${this.route}`);
     	return res.data
     }
-     async deleteUser(id){
-        await _axios.delete(`${this.route}/${id}`);   
+    async deleteUser(id){
+    	await _axios.delete(`${this.route}/${id}`);   
     };
 }
