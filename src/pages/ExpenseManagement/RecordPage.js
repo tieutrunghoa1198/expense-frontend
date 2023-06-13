@@ -7,9 +7,10 @@ import {Link} from 'react-router-dom';
 import UploadCSV from '../../components/UploadCSV';
 import Years from '../../components/Years';
 import Months from '../../components/Months';
-import Categories from "../../components/Categories";
+import Categories from '../../components/Categories';
 const RecordPage = () => {
 	const [expRecords, setExpRecords] = useState(null);
+	const [filteredRecords, setFilteredRecords] = useState(null);
 	const [isDescendingAmount, setIsDescendingAmount] = useState(false);
 	const [isDescendingDate, setIsDescendingDate] = useState(false);
 	const [selectedMonth, setSelectedMonth] = useState('')
@@ -26,6 +27,7 @@ const RecordPage = () => {
 	const getAllExpense = async () => {
 		const res = await API_SERVICE.Records.getAll()
 		setExpRecords(res.content);
+		setFilteredRecords(res.content)
 	}
 
 	const handleDelete = async (id) => {
@@ -54,7 +56,7 @@ const RecordPage = () => {
 				if (isDescendingAmount) return b.amount - a.amount
 				else return a.amount - b.amount
 			})
-			setExpRecords(sorted)
+			setFilteredRecords(sorted)
 		}
 	}
 
@@ -66,7 +68,7 @@ const RecordPage = () => {
 				if (isDescendingDate) return Date.parse(b.date) - Date.parse(a.date)
 				else return Date.parse(a.date) - Date.parse(b.date)
 			})
-			setExpRecords(sorted)
+			setFilteredRecords(sorted)
 		}
 	}
 
@@ -86,15 +88,27 @@ const RecordPage = () => {
 		setSelectedYear(data)
 	}
 	const handleCategoryChange = (data) => {
-		setSelectedCategory(data)
+		setSelectedCategory(Number.parseInt(data))
 	}
 
-	const filter = async (month = '', year = '', categoryId = 0) => {
-		console.log('run')
-		console.log(selectedMonth, 'month')
-		console.log(selectedYear, 'year')
-		console.log(selectedCategory, 'cate')
-		// if (month.length === 0 && year.length === 0 && categoryId === 0) await getAllExpense()
+	const filter = async () => {
+		if (selectedMonth.length === 0 && selectedYear.length === 0 && selectedCategory === 0) {
+			await getAllExpense()
+			return;
+		}
+
+		const cloneExpRecords = [...expRecords]
+		const filtered = cloneExpRecords.filter((record) => {
+			const date = moment(Date.parse(record.date)).format('YYYY-MM-DD');
+			const month = date.split('-')[1];
+			const year = date.split('-')[0];
+			const categoryId = Number.parseInt(record.categories[0].id);
+			const monthMatch = selectedMonth ? month === selectedMonth : true
+			const yearMatch = selectedYear ? year === selectedYear : true
+			const categoryMatch = selectedCategory ? categoryId === selectedCategory : true
+			return monthMatch && yearMatch && categoryMatch;
+		})
+		setFilteredRecords(filtered);
 	}
 
 	return (
@@ -115,7 +129,7 @@ const RecordPage = () => {
 				</div>
 			</div>
 			{
-				expRecords && expRecords.length > 0
+				filteredRecords && filteredRecords.length > 0
 					? (<div>
 						<table className="table">
 							<thead>
@@ -137,7 +151,7 @@ const RecordPage = () => {
 								</tr>
 							</thead>
 							<tbody>
-								{expRecords.map((record, index) => {
+								{filteredRecords.map((record, index) => {
 									const rowClassName = record.type === ExpenseType.EXPENSE ? 'expense-row' : 'income-row';
 									return (
 										<tr key={index}>
