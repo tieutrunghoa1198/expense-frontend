@@ -1,2 +1,4 @@
 import BaseApi from '../interfaces/base-api.interface';
-export default class CategoryService extends BaseApi { }
+export default class CategoryService extends BaseApi {
+
+}

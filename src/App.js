@@ -14,9 +14,9 @@ import { Provider } from 'react-redux';
 import LoginStore from './state/login/store';
 import NonAuth from './components/Auth/NonAuth';
 import UserProfilePage from './pages/UserManagement/UserProfilePage';
-import CreateRecordPage from "./pages/ExpenseManagement/CreateRecordPage";
-import DetailRecordPage from "./pages/ExpenseManagement/DetailRecordPage";
-import UpdateRecordPage from "./pages/ExpenseManagement/UpdateRecordPage";
+import CreateRecordPage from './pages/ExpenseManagement/CreateRecordPage';
+import DetailRecordPage from './pages/ExpenseManagement/DetailRecordPage';
+import UpdateRecordPage from './pages/ExpenseManagement/UpdateRecordPage';
 class App extends Component {
 	render(){
 		return(
