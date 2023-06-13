@@ -14,9 +14,12 @@ import { Provider } from 'react-redux';
 import LoginStore from './state/login/store';
 import NonAuth from './components/Auth/NonAuth';
 import UserProfilePage from './pages/UserManagement/UserProfilePage';
-import CreateRecordPage from './pages/ExpenseManagement/CreateRecordPage';
-import DetailRecordPage from './pages/ExpenseManagement/DetailRecordPage';
-import UpdateRecordPage from './pages/ExpenseManagement/UpdateRecordPage';
+import CreateRecordPage from "./pages/ExpenseManagement/CreateRecordPage";
+import DetailRecordPage from "./pages/ExpenseManagement/DetailRecordPage";
+import AddNewUser from './pages/UserManagement/AddUser';
+import CreateCategory from './pages/ExpenseManagement/CreateCategory';
+import UpdateCategory from './pages/ExpenseManagement/UpdateCategory';
+
 class App extends Component {
 	render(){
 		return(
@@ -38,12 +41,16 @@ class App extends Component {
 							<Route path='records/:id' element={<DetailRecordPage/>}/>
 							<Route path='records/create' element={<CreateRecordPage/>}/>
 							<Route path='categories' element={<CategoryPage/>}/>
+							<Route path='create-record' element={<CreateRecordPage/>}/>
+							<Route path='create-category' element={<CreateCategory/>}/>
+							<Route path='update-category/:id' element={<UpdateCategory/>}/>
 							<Route path='profile' element={<UserProfilePage/>}/>
 						</Route>
 
 						{/* protected routes for ADMIN */}
 						<Route element={<RequireAuth allowedRoles={[ROLES.ADMIN]}/>}>
-							<Route path='admin-dashboard' element={<AdminPage/>}/>
+							<Route path='users' element={<AdminPage/>}/>
+							<Route path='create-user' element={<AddNewUser/>}/>
 						</Route>
 
 						{/* catch all */}
