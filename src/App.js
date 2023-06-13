@@ -19,6 +19,7 @@ import DetailRecordPage from "./pages/ExpenseManagement/DetailRecordPage";
 import AddNewUser from './pages/UserManagement/AddUser';
 import CreateCategory from './pages/ExpenseManagement/CreateCategory';
 import UpdateCategory from './pages/ExpenseManagement/UpdateCategory';
+
 class App extends Component {
 	render(){
 		return(
@@ -36,7 +37,9 @@ class App extends Component {
 						<Route element={<RequireAuth allowedRoles={[ROLES.USER]}/>}>
 							<Route path='home' element={<HomePage/>}/>
 							<Route path='records' element={<RecordPage/>}/>
+							<Route path='records/edit/:id' element={<UpdateRecordPage/>}/>
 							<Route path='records/:id' element={<DetailRecordPage/>}/>
+							<Route path='records/create' element={<CreateRecordPage/>}/>
 							<Route path='categories' element={<CategoryPage/>}/>
 							<Route path='create-record' element={<CreateRecordPage/>}/>
 							<Route path='create-category' element={<CreateCategory/>}/>
