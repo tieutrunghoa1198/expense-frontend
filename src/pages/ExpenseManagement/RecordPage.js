@@ -22,7 +22,7 @@ const RecordPage = () => {
 	}, [])
 
 	useEffect(() => {
-		filter(selectedMonth, selectedYear, selectedCategory);
+		filter();
 	}, [selectedMonth, selectedYear, selectedCategory])
 
 	const getAllExpense = async () => {

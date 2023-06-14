@@ -10,7 +10,7 @@ export default class UserService {
     	return res.data
     }
     async getUsers() {
-    	const res = await _axios.get(`${this.route}`);
+    	const res = await _axios.get(`${this.route}/all`);
     	return res.data
     }
     async deleteUser(id){
