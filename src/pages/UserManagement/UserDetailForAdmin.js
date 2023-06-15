@@ -21,7 +21,7 @@ const UserDetailForAdmin = () => {
 		try {
 			const res = await API_SERVICE.User.getUserById(id)
 			const rolesId = [];
-			if (res.roles.length == 0) return;
+			if (res.roles.length === 0) return;
 			res.roles.forEach(role => {
 				rolesId.push(role.id)
 			})

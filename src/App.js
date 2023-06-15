@@ -20,7 +20,7 @@ import AddNewUser from './pages/UserManagement/AddUser';
 import CreateCategory from './pages/ExpenseManagement/CreateCategory';
 import UpdateCategory from './pages/ExpenseManagement/UpdateCategory';
 import UpdateRecordPage from './pages/ExpenseManagement/UpdateRecordPage';
-import UserDetailForAdmin from "./pages/UserManagement/UserDetailForAdmin";
+import UserDetailForAdmin from './pages/UserManagement/UserDetailForAdmin';
 class App extends Component {
 	render(){
 		return(
