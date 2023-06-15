@@ -59,7 +59,8 @@ const UserDetailForAdmin = () => {
 	};
 
 	const handleGiveAdminRole = async () => {
-		selectedRoles.includes(2)
+		const admin_role_id = 2;
+		selectedRoles.includes(admin_role_id)
 			? await API_SERVICE.User.giveAdminRole(formData.username)
 			: await API_SERVICE.User.removeAdminRole(formData.username);
 	}
