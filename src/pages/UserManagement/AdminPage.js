@@ -1,24 +1,25 @@
 import React, {useEffect, useState} from 'react';
 import {API_SERVICE} from '../../constants/api.const';
-import {Link,useParams } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 const AdminPage = () => {
 	const [users, setUsers] = useState(null);
-
-	const { id } = useParams();
 
 	useEffect(() => {
 		getAllUser()
 	}, [])
 
 	const getAllUser = async () => {
-		const res = await API_SERVICE.User.getUsers()
-		console.log(res)
-		setUsers(res);
+		try {
+			const res = await API_SERVICE.User.getUsers()
+			setUsers(res);
+		} catch (e) {
+			console.log(e);
+		}
 	}
 
-	const deleteUser = async (id) => {
+	const deleteUser = async (username) => {
 		try {
-			await API_SERVICE.User.deleteUser(id)
+			await API_SERVICE.User.delete(username)
 			await getAllUser()
 		} catch (e) {
 			console.log(e)
@@ -28,11 +29,6 @@ const AdminPage = () => {
 	return (
 		<div className="container">
 			<h1>User Manager</h1>
-			<button className="btn btn-primary">
-				<Link to="/create-user" style={{ color: 'white', textDecoration: 'none'}}>
-					Create User
-				</Link>
-			</button>
 			{
 				users
 					? (<table className="table">

@@ -76,8 +76,7 @@ const RecordPage = () => {
 	const handleUpload = async (data) => {
 		console.log(data)
 		for ( let i = 0; i < data.length; i ++) {
-			const foundCategory = await API_SERVICE.Categories.getOne()
-			// const res = await API_SERVICE.Records.create(data[0])
+			// const foundCategory = await API_SERVICE.Categories.getOne()
 		}
 
 	}

@@ -20,6 +20,7 @@ import AddNewUser from './pages/UserManagement/AddUser';
 import CreateCategory from './pages/ExpenseManagement/CreateCategory';
 import UpdateCategory from './pages/ExpenseManagement/UpdateCategory';
 import UpdateRecordPage from './pages/ExpenseManagement/UpdateRecordPage';
+import UserDetailForAdmin from "./pages/UserManagement/UserDetailForAdmin";
 class App extends Component {
 	render(){
 		return(
@@ -50,6 +51,7 @@ class App extends Component {
 						<Route element={<RequireAuth allowedRoles={[ROLES.ADMIN]}/>}>
 							<Route path='users' element={<AdminPage/>}/>
 							<Route path='create-user' element={<AddNewUser/>}/>
+							<Route path='users/:id' element={<UserDetailForAdmin/>}/>
 						</Route>
 
 						{/* catch all */}

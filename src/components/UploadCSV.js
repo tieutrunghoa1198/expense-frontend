@@ -1,7 +1,6 @@
-import React, {useState} from 'react'
+import React from 'react'
 import moment from 'moment';
 const UploadCSV = ({onUpload}) => {
-	const [error, setError] = useState()
 	const handleUpload = (e) => {
 		e.preventDefault()
 		if (!e.target[0].files[0]) return;
