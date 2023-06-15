@@ -39,6 +39,7 @@ const UpdateCategory = () => {
 		<div className="container">
 			<h1>Update Category</h1>
 			<form className="col-5" onSubmit={handleUpdateCategory}>
+			<input type='hidden' name='id' value={id} />
 				<div className="form-group mb-3">
 					<label htmlFor="exampleInputEmail1">Category name</label>
 					<input

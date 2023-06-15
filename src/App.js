@@ -43,7 +43,7 @@ class App extends Component {
 							<Route path='records/create' element={<CreateRecordPage/>}/>
 							<Route path='categories' element={<CategoryPage/>}/>
 							<Route path='create-category' element={<CreateCategory/>}/>
-							<Route path='update-category/:id' element={<UpdateCategory/>}/>
+							<Route path='categories/:id' element={<UpdateCategory/>}/>
 							<Route path='profile' element={<UserProfilePage/>}/>
 						</Route>
 

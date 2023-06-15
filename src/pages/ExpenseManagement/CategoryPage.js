@@ -51,7 +51,7 @@ const CategoryPage = () => {
 											<td>{category.description}</td>
 											<td>
 												
-												<Link to={`/update-category/${category.id}`} style={{ textDecoration: 'none'}}>
+												<Link to={`/categories/${category.id}`} style={{ textDecoration: 'none'}}>
 													<button className="btn btn-outline-primary mx-1">
 													Edit
 													</button>
