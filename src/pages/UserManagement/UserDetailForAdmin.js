@@ -53,21 +53,15 @@ const UserDetailForAdmin = () => {
 	}
 
 	const handleCheckboxChange = (event, roleId) => {
-		if (event.target.checked) {
-			setSelectedRoles([...selectedRoles, roleId]);
-		} else {
-			setSelectedRoles(selectedRoles.filter(id => id !== roleId));
-		}
+		event.target.checked
+			? setSelectedRoles([...selectedRoles, roleId])
+			: setSelectedRoles(selectedRoles.filter(id => id !== roleId));
 	};
 
 	const handleGiveAdminRole = async () => {
-		try {
-			selectedRoles.includes(2)
-				? await API_SERVICE.User.giveAdminRole(formData.username)
-				: await API_SERVICE.User.removeAdminRole(formData.username);
-		} catch (e) {
-			console.log(e)
-		}
+		selectedRoles.includes(2)
+			? await API_SERVICE.User.giveAdminRole(formData.username)
+			: await API_SERVICE.User.removeAdminRole(formData.username);
 	}
 
 	return (

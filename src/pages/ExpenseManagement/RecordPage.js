@@ -112,11 +112,9 @@ const RecordPage = () => {
 	}
 
 	const handleCheckboxChange = (event, rowId) => {
-		if (event.target.checked) {
-			setSelectedRows([...selectedRows, rowId]);
-		} else {
-			setSelectedRows(selectedRows.filter(id => id !== rowId));
-		}
+		event.target.checked
+			? setSelectedRows([...selectedRows, rowId])
+			: setSelectedRows(selectedRows.filter(id => id !== rowId));
 	};
 
 	const handleSelectAll = event => {
