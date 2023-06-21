@@ -21,6 +21,7 @@ import CreateCategory from './pages/ExpenseManagement/CreateCategory';
 import UpdateCategory from './pages/ExpenseManagement/UpdateCategory';
 import UpdateRecordPage from './pages/ExpenseManagement/UpdateRecordPage';
 import UserDetailForAdmin from './pages/UserManagement/UserDetailForAdmin';
+import UserDetails from './pages/UserManagement/UserDetail';
 class App extends Component {
 	render(){
 		return(
@@ -45,6 +46,7 @@ class App extends Component {
 							<Route path='create-category' element={<CreateCategory/>}/>
 							<Route path='update-category/:id' element={<UpdateCategory/>}/>
 							<Route path='profile' element={<UserProfilePage/>}/>
+                            <Route path='userdetail/:id' element={<UserDetails/>}/>
 						</Route>
 
 						{/* protected routes for ADMIN */}

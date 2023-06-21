@@ -11,6 +11,10 @@ export default class UserService {
     	return res.data
     }
 
+    async getRaw(){
+        return "Nothing";
+    }
+
     async getUserById(id) {
     	const res = await _axios.get(`${this.route}/${id}`)
     	return res.data;
