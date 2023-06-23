@@ -22,7 +22,7 @@ import UpdateCategory from './pages/ExpenseManagement/UpdateCategory';
 import UpdateRecordPage from './pages/ExpenseManagement/UpdateRecordPage';
 import UserDetailForAdmin from './pages/UserManagement/UserDetailForAdmin';
 import UserDetails from './pages/UserManagement/UserDetail';
-import UploadFiles from './pages/ExpenseManagement/upload-files.component';
+import FileUpload from './pages/UserManagement/FileUpload';
 class App extends Component {
 	render(){
 		return(
@@ -48,7 +48,7 @@ class App extends Component {
 							<Route path='update-category/:id' element={<UpdateCategory/>}/>
 							<Route path='profile' element={<UserProfilePage/>}/>
                             <Route path='userdetail/:id' element={<UserDetails/>}/>
-							<Route path='files' element={<UploadFiles/>}/>
+			                <Route path='fileupload' element={<FileUpload/>}/>
 						</Route>
 
 						{/* protected routes for ADMIN */}
