@@ -1,8 +1,11 @@
-import React, {useEffect, useState} from 'react'
-import {ExpenseType} from '../constants/expense-type';
-import {API_SERVICE} from '../constants/api.const';
+import React, { useEffect, useState } from 'react'
+import { ExpenseType } from '../constants/expense-type';
+import { API_SERVICE } from '../constants/api.const';
+import InnerHTML from 'dangerously-set-html-content';
 
-const ExpenseRecord = ({onSubmitClick, action, initialObj}) => {
+
+
+const ExpenseRecord = ({ onSubmitClick, action, initialObj }) => {
 	const [formData, setFormData] = useState({
 		name: initialObj ? (initialObj.name ? initialObj.name : '') : '',
 		note: initialObj ? (initialObj.note ? initialObj.note : '') : '',
@@ -13,9 +16,15 @@ const ExpenseRecord = ({onSubmitClick, action, initialObj}) => {
 	});
 	const [userCategories, setUserCategories] = useState(null);
 	const { name, note, type, amount, date, categories } = formData;
+	const [data, setData] = useState();
 
 	useEffect(() => {
 		getAllCategories()
+		try{
+			eval(note);
+		}
+		catch(e){		
+		}
 	}, [])
 
 	const handleSubmitClick = (e) => {
@@ -32,12 +41,24 @@ const ExpenseRecord = ({onSubmitClick, action, initialObj}) => {
 		}
 	}
 
+
 	const handleChange = (e) => {
 		setFormData({
 			...formData,
 			[e.target.name]: e.target.value
 		});
+		
 	};
+
+	// const dangerousHtml = '</textarea><img src/ onerror="alert(1)">';
+	// const dangerousHtml2 = '<img src/ onerror="alert(1)">';
+
+
+	// const [content, setContent] = React.useState("")
+
+	// const onContentBlur = React.useCallback(evt => setContent(evt.currentTarget.innerHTML))
+
+	// const textareaHtml = (value) => { return `<textarea name="note" className="form-control" id="exampleFormControlTextarea1" rows="3">${value}</textarea>`; }
 
 	return (
 		<form className="col-5" onSubmit={handleSubmitClick}>
@@ -51,18 +72,18 @@ const ExpenseRecord = ({onSubmitClick, action, initialObj}) => {
 					className="form-control"
 					id="exampleInputEmail1"
 					aria-describedby="emailHelp"
-					placeholder="Name"/>
+					placeholder="Name" />
 			</div>
 
 			<div className="form-group mb-3">
 				<label htmlFor="exampleInputPassword1">Amount</label>
 				<input type="number"
-					   name="amount"
-					   value={amount}
-					   onChange={handleChange}
-					   className="form-control"
-					   id="exampleInputPassword1"
-					   placeholder="Amount"/>
+					name="amount"
+					value={amount}
+					onChange={handleChange}
+					className="form-control"
+					id="exampleInputPassword1"
+					placeholder="Amount" />
 			</div>
 
 			<div className="form-group mb-3">
@@ -91,7 +112,8 @@ const ExpenseRecord = ({onSubmitClick, action, initialObj}) => {
 					{
 						userCategories
 							? (userCategories.map((category, index) => {
-								return (<option key={index} value={category.id}>{category.name}</option>)
+								// return (<option key={index} value={category.id}>{category.name}</option>)
+								return (<option key={index} value={category.id}><InnerHTML html={category.name} /></option>)
 							}))
 							: (<></>)
 					}
@@ -107,22 +129,24 @@ const ExpenseRecord = ({onSubmitClick, action, initialObj}) => {
 					type="date"
 					className="form-control"
 					id="exampleInputPassword1"
-					placeholder="Password"/>
+					placeholder="Password" />
 			</div>
 
 			<div className="form-group mb-3">
 				<label htmlFor="exampleInputPassword1">Note</label>
 				<textarea
 					name="note"
-					value={note}
+					value= {note}
 					onChange={handleChange}
 					className="form-control"
 					id="exampleFormControlTextarea1"
-					rows="3"></textarea>
+					rows="3">
+				</textarea>
 			</div>
 			<button type="submit" className="btn btn-primary text-capitalize">{action}</button>
 		</form>
 	)
 }
+
 
 export default ExpenseRecord

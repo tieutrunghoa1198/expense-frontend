@@ -3,6 +3,8 @@ import {useNavigate, useParams} from 'react-router-dom';
 import {API_SERVICE} from '../../constants/api.const';
 import ExpenseRecord from '../../components/ExpenseRecord';
 import moment from 'moment';
+import InnerHTML from 'dangerously-set-html-content';
+import { Helmet } from "react-helmet"
 
 const UpdateRecordPage = () => {
 	const { id } = useParams()
@@ -11,6 +13,7 @@ const UpdateRecordPage = () => {
 	const navigate = useNavigate();
 	useEffect(() => {
 		getRecordById(convertedId);
+		
 	}, [])
 
 	const getRecordById = async (id) => {

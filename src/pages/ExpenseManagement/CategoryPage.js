@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { API_SERVICE } from '../../constants/api.const';
 import {Link} from 'react-router-dom';
+
+
 const CategoryPage = () => {
 	const [categorys, setCategorys] = useState(null);
 	
@@ -36,7 +38,7 @@ const CategoryPage = () => {
 								<tr>									
 									<th scope="col">#</th>
 									<th scope="col">Name</th>
-									<th scope="col">Description</th>
+									<th scope="col">Description</th>									
 									<th scope="col">Action</th>
 								</tr>
 							</thead>
@@ -47,8 +49,12 @@ const CategoryPage = () => {
 										<tr key= {index}>
 											
 											<th scope="row">{index + 1}</th>
-											<td>{category.name}</td>
+											<td>
+											{/* <div dangerouslySetInnerHTML={{__html:category.name}}></div> */}
+											{category.name}
+											</td>
 											<td>{category.description}</td>
+											
 											<td>
 												
 												<Link to={`/update-category/${category.id}`} style={{ textDecoration: 'none'}}>

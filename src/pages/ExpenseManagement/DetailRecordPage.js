@@ -33,7 +33,7 @@ const DetailRecordPage = () => {
 						<br/>
 						<span className="fw-bold">Category</span>: {data.categories[0].name}
 						<br/>
-						<span className="fw-bold">Note</span>: {data.note}
+						<span className="fw-bold">Note</span>: {data.note}						
 						<br/>
 					</div>)
 					: (<div>Loading data...</div>)
