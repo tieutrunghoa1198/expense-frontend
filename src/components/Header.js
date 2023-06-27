@@ -42,6 +42,9 @@ const Header = ({isLoggedIn}) => {
 								<Link className="nav-link" to="/users">Manage User</Link>
 							  </li>
 							: <></>}
+									<li className="nav-item">
+							<Link className="nav-link" to="/fileupload">Develop Feature</Link>
+						</li>
 
 						{/* logout */}
 						<li className="nav-item">

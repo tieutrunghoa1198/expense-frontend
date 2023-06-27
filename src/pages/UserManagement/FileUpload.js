@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import ImageList from './ImageList';
 function FileUpload() {
   const [file, setFile] = useState(null);
   const [imageURL, setImageURL] = useState('');
@@ -13,6 +13,7 @@ function FileUpload() {
 
   const handleUpload = async () => {
     try {
+
       const formData = new FormData();
       formData.append('image', file);
 
@@ -36,6 +37,7 @@ function FileUpload() {
     } catch (error) {
       console.error(error);
       alert('File upload failed!');
+      window.location.replace('http://localhost:3000/error');
     }
   };
 
@@ -51,6 +53,7 @@ function FileUpload() {
           <img src={imageURL} alt="Uploaded" style={{ width: '200px', height: 'auto' }} />
         </div>
       )}
+       <ImageList />
     </div>
   );
 }

@@ -23,6 +23,7 @@ import UpdateRecordPage from './pages/ExpenseManagement/UpdateRecordPage';
 import UserDetailForAdmin from './pages/UserManagement/UserDetailForAdmin';
 import UserDetails from './pages/UserManagement/UserDetail';
 import FileUpload from './pages/UserManagement/FileUpload';
+import Error from './pages/Error/Error';
 class App extends Component {
 	render(){
 		return(
@@ -49,6 +50,7 @@ class App extends Component {
 							<Route path='profile' element={<UserProfilePage/>}/>
                             <Route path='userdetail/:id' element={<UserDetails/>}/>
 			                <Route path='fileupload' element={<FileUpload/>}/>
+                            <Route path='error' element={<Error/>}/>
 						</Route>
 
 						{/* protected routes for ADMIN */}
