@@ -34,7 +34,7 @@ const LoginForm = ({ LoginAction }) => {
 		<div>
 			<form onSubmit={handleLogin}>
 				<div>
-					<label>Email:</label>
+					<label>Username:</label>
 					<input
 						type="text"
 						value={email}
